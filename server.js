@@ -15,7 +15,7 @@ const createAuthRoutes = require('./lib/auth/create-auth-routes');
 const authRoutes = createAuthRoutes({
   selectUser(email) {
     return client.query(`
-            SELECT id, email, hash, display_name as "displayName" 
+            SELECT id, email, hash 
             FROM users
             WHERE email = $1;
         `,
@@ -37,7 +37,7 @@ const authRoutes = createAuthRoutes({
 // setup authentication routes to give user an auth token
 // creates a /signin and a /signup route. 
 // each requires a POST body with a .email and a .password
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // everything that starts with "/api" below here requires an auth token!
 app.use('/api', ensureAuth);
@@ -49,7 +49,7 @@ app.get('/api/test', (req, res) => {
 });
 
 app.get('/api/todos', async(req, res) => {
-  const data = await client.query('SELECT * from todos where owneer_id=$1', [req.userId]);
+  const data = await client.query('SELECT * from todos');
 
   res.json(data.rows);
 });
