@@ -21,7 +21,7 @@ async function run() {
                     name VARCHAR(512) NOT NULL,
                     priority INTEGER NOT NULL,
                     completed BOOLEAN DEFAULT FALSE,
-                    owner_id INTEGER NOT NULL REFERENCES users(id
+                    owner_id INTEGER NOT NULL REFERENCES users(id)
             );
         `);
 
