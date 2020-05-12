@@ -49,7 +49,28 @@ app.get('/api/test', (req, res) => {
 });
 
 app.get('/api/todos', async(req, res) => {
-  const data = await client.query('SELECT * from todos');
+  const data = await client.query('SELECT * from todos where owner_id=$1', [req.userId]);
+
+  res.json(data.rows);
+});
+
+app.post('/api/todos', async(req, res) => {
+  const data = await client.query(`
+    insert into todos (name, priority, completed, owner_id)
+    values ($1, $2, $3, $4)
+    returning *
+  `, [req.body.name, req.body.priority, req.completed, req.userId]);
+
+  res.json(data.rows);
+});
+
+app.put('/api/todos/:id', async(req, res) => {
+  const data = await client.query(`
+    UPDATE todos
+    SET completed=true
+    WHERE id=$1 AND owner_id=$2
+    returning *;
+  `, [req.params.id, req.userId]);
 
   res.json(data.rows);
 });
