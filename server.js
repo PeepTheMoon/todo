@@ -37,7 +37,7 @@ const authRoutes = createAuthRoutes({
 // setup authentication routes to give user an auth token
 // creates a /signin and a /signup route. 
 // each requires a POST body with a .email and a .password
-app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 // everything that starts with "/api" below here requires an auth token!
 app.use('/api', ensureAuth);
@@ -59,7 +59,7 @@ app.post('/api/todos', async(req, res) => {
     insert into todos (name, priority, completed, owner_id)
     values ($1, $2, $3, $4)
     returning *
-  `, [req.body.name, req.body.priority, req.completed, req.userId]);
+  `, [req.body.name, req.body.priority, req.body.completed, req.userId]);
 
   res.json(data.rows);
 });

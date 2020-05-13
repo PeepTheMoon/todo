@@ -2,10 +2,6 @@
 https://infinite-fortress-66382.herokuapp.com/ | https://git.heroku.com/infinite-fortress-66382.git
 
 ## Questions:
-I have my completed boolean default to false but when I pull up the todos on postman the value is null.
-
-email and password warning isn't popping up when invalid info is entered
-
 can't pull up todos for a specific user
 
 ## Getting started
