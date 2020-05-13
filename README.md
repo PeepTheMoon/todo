@@ -1,13 +1,6 @@
 # Create Alchemy SQL BE
 https://infinite-fortress-66382.herokuapp.com/ | https://git.heroku.com/infinite-fortress-66382.git
 
-## Questions:
-//  "id": 8,
-//         "name": "wash dog",
-//         "priority": 5,
-//         "completed": false,
-//         "owner_id": 3
-
 ## Getting started
 1. Change all the files in the `data` directory to match the data model of your app.
 1. Run `heroku create`
